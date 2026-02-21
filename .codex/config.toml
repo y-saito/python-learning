@@ -1,0 +1,5 @@
+# .codex/config.toml
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp"]
+# 可能ならバージョン固定も検討: "@upstash/context7-mcp@x.y.z"
