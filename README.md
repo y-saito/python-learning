@@ -195,3 +195,98 @@ docker run --rm -v "$PWD":/workspace -w /workspace php:8.3-cli \
 # 期待値との比較（例: Python）
 diff -u <(jq -S . data/topic5_visual_report_expected.json) <(jq -S . /tmp/topic5_py.json)
 ```
+
+## お題6: JSON / Parquet 読み込み比較（3言語比較）
+
+- 入力データ:
+  - `data/topic6_sales.json`
+  - `data/topic6_sales.parquet`
+- 期待値: `data/topic6_format_expected.json`
+
+```bash
+# Python（pandas.read_json + pandas.read_parquet）
+docker compose run --rm --no-deps app python -m app.data_processing.data_format_compare \
+  --json-input data/topic6_sales.json \
+  --parquet-input data/topic6_sales.parquet \
+  > /tmp/topic6_py.json
+```
+
+```bash
+# Node.js（JSON.parse + parquetjs-lite）
+docker run --rm -v "$PWD":/workspace -w /workspace node:20 sh -lc \
+  "cd /tmp && npm init -y >/dev/null && npm install parquetjs-lite@0.8.7 >/dev/null && \
+   NODE_PATH=/tmp/node_modules node /workspace/comparisons/topic6/data_format_compare_node.js \
+   --json-input /workspace/data/topic6_sales.json \
+   --parquet-input /workspace/data/topic6_sales.parquet" \
+  > /tmp/topic6_node.json
+```
+
+```bash
+# PHP（json_decode + codename/parquet）
+docker run --rm -v "$PWD":/workspace -w /workspace php:8.3-cli bash -lc \
+  "apt-get update >/dev/null && apt-get install -y --no-install-recommends curl git unzip libgmp-dev >/dev/null && \
+   docker-php-ext-install -j\$(nproc) gmp bcmath >/dev/null && \
+   mkdir -p /tmp/topic6_php_vendor && cd /tmp/topic6_php_vendor && \
+   printf '{\"name\":\"topic6/parquet\",\"require\":{}}' > composer.json && \
+   curl -sS https://getcomposer.org/installer | php >/dev/null && \
+   php composer.phar require codename/parquet:^0.7.2 --no-interaction >/dev/null && \
+   PARQUET_VENDOR_AUTOLOAD=/tmp/topic6_php_vendor/vendor/autoload.php \
+   php /workspace/comparisons/topic6/data_format_compare_php.php \
+     --json-input /workspace/data/topic6_sales.json \
+     --parquet-input /workspace/data/topic6_sales.parquet" \
+  > /tmp/topic6_php.json
+```
+
+```bash
+# 期待値との比較
+diff -u <(jq -S . data/topic6_format_expected.json) <(jq -S . /tmp/topic6_py.json)
+diff -u <(jq -S . data/topic6_format_expected.json) <(jq -S . /tmp/topic6_node.json)
+diff -u <(jq -S . data/topic6_format_expected.json) <(jq -S . /tmp/topic6_php.json)
+```
+
+## お題7: ETL ミニパイプライン（Extract -> Transform -> Load, 3言語比較）
+
+- 入力データ: `data/topic7_orders_raw.csv`
+- 期待値: `data/topic7_etl_expected.json`
+- Parquet出力先（例）: `data/tmp/topic7_clean_orders.parquet`
+
+```bash
+# Python（pandas でETLを段階化）
+docker compose run --rm --no-deps app python -m app.data_processing.etl_pipeline \
+  --input data/topic7_orders_raw.csv \
+  --output data/tmp/topic7_clean_orders.parquet \
+  > /tmp/topic7_py.json
+```
+
+```bash
+# Node.js（行ループ変換 + parquetjs-lite でLoad）
+docker run --rm -v "$PWD":/workspace -w /workspace node:20 sh -lc \
+  "cd /tmp && npm init -y >/dev/null && npm install parquetjs-lite@0.8.7 >/dev/null && \
+   NODE_PATH=/tmp/node_modules node /workspace/comparisons/topic7/etl_pipeline_node.js \
+     --input /workspace/data/topic7_orders_raw.csv \
+     --output /workspace/data/tmp/topic7_clean_orders.parquet" \
+  > /tmp/topic7_node.json
+```
+
+```bash
+# PHP（foreach変換 + codename/parquet でLoad）
+docker run --rm -v "$PWD":/workspace -w /workspace php:8.3-cli bash -lc \
+  "apt-get update >/dev/null && apt-get install -y --no-install-recommends curl git unzip libgmp-dev >/dev/null && \
+   docker-php-ext-install -j\$(nproc) gmp bcmath >/dev/null && \
+   mkdir -p /tmp/topic7_php_vendor && cd /tmp/topic7_php_vendor && \
+   printf '{\"name\":\"topic7/parquet\",\"require\":{}}' > composer.json && \
+   curl -sS https://getcomposer.org/installer | php >/dev/null && \
+   php composer.phar require codename/parquet:^0.7.2 --no-interaction >/dev/null && \
+   PARQUET_VENDOR_AUTOLOAD=/tmp/topic7_php_vendor/vendor/autoload.php \
+   php /workspace/comparisons/topic7/etl_pipeline_php.php \
+     --input /workspace/data/topic7_orders_raw.csv \
+     --output /workspace/data/tmp/topic7_clean_orders.parquet" \
+  > /tmp/topic7_php.json
+```
+
+```bash
+# 期待値との比較
+diff -u <(jq -S . data/topic7_etl_expected.json) <(jq -S . /tmp/topic7_py.json)
+diff -u <(jq -S . data/topic7_etl_expected.json) <(jq -S . /tmp/topic7_node.json)
+diff -u <(jq -S . data/topic7_etl_expected.json) <(jq -S . /tmp/topic7_php.json)
+```
