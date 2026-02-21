@@ -1,0 +1,10 @@
+{"timestamp":"2026-02-10T10:00:00Z","endpoint":"/api/orders","method":"GET","status":200,"response_time_ms":120}
+{"timestamp":"2026-02-10T10:01:00Z","endpoint":"/api/orders","method":"GET","status":"200","response_time_ms":"95"}
+{"timestamp":"2026-02-10T10:02:00Z","endpoint":"/api/users","method":"POST","status":201,"response_time_ms":null}
+{"timestamp":"2026-02-10T10:03:00Z","endpoint":"/api/users","method":"POST","status":"500","response_time_ms":110}
+{"timestamp":"2026-02-10T10:04:00Z","endpoint":"/api/items","method":"GET","status":200,"response_time_ms":98}
+{"timestamp":"2026-02-10T10:05:00Z","endpoint":"/api/items","method":"GET","status":null,"response_time_ms":105}
+{"timestamp":"2026-02-10T10:06:00Z","endpoint":"/api/payments","method":"POST","status":200,"response_time_ms":102}
+{"timestamp":"2026-02-10T10:07:00Z","endpoint":"/api/payments","method":"POST","status":200,"response_time_ms":1000}
+{"timestamp":"2026-02-10T10:08:00Z","endpoint":null,"method":null,"status":200,"response_time_ms":""}
+{"timestamp":"2026-02-10T10:09:00Z","endpoint":"/api/orders","method":"GET","status":200,"response_time_ms":115}

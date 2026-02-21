@@ -84,3 +84,24 @@ docker compose run --rm --no-deps app ruff check app
 # Typecheck
 docker compose run --rm --no-deps app mypy
 ```
+
+## お題2: JSONログ整形と異常値検出（3言語比較）
+
+- 入力データ: `data/api_logs_sample.jsonl`
+- 期待値: `data/api_logs_expected.json`
+
+```bash
+# Python
+docker compose run --rm --no-deps app python -m app.data_processing.log_preprocessing --input data/api_logs_sample.jsonl
+
+# Node.js
+docker run --rm -v "$PWD":/workspace -w /workspace node:20 node comparisons/topic2/log_preprocessing_node.js --input data/api_logs_sample.jsonl
+
+# PHP
+docker run --rm -v "$PWD":/workspace -w /workspace php:8.3-cli php comparisons/topic2/log_preprocessing_php.php --input data/api_logs_sample.jsonl
+```
+
+```bash
+# 期待値との比較（例: Python）
+diff -u <(jq -S . data/api_logs_expected.json) <(jq -S . /tmp/logs_py.json)
+```

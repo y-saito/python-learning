@@ -1,0 +1,119 @@
+{
+  "summary": {
+    "total_records": 10,
+    "filled_response_time_count": 2,
+    "filled_status_count": 1,
+    "filled_endpoint_count": 1,
+    "filled_method_count": 1,
+    "anomaly_count": 0,
+    "outlier_count": 1
+  },
+  "response_time_bounds": {
+    "lower": 86.25,
+    "upper": 130.25
+  },
+  "cleaned_logs": [
+    {
+      "timestamp": "2026-02-10T10:00:00Z",
+      "endpoint": "/api/orders",
+      "method": "GET",
+      "status": 200,
+      "response_time_ms": 120,
+      "is_anomaly": false,
+      "is_outlier": false
+    },
+    {
+      "timestamp": "2026-02-10T10:01:00Z",
+      "endpoint": "/api/orders",
+      "method": "GET",
+      "status": 200,
+      "response_time_ms": 95,
+      "is_anomaly": false,
+      "is_outlier": false
+    },
+    {
+      "timestamp": "2026-02-10T10:02:00Z",
+      "endpoint": "/api/users",
+      "method": "POST",
+      "status": 201,
+      "response_time_ms": 107.5,
+      "is_anomaly": false,
+      "is_outlier": false
+    },
+    {
+      "timestamp": "2026-02-10T10:03:00Z",
+      "endpoint": "/api/users",
+      "method": "POST",
+      "status": 500,
+      "response_time_ms": 110,
+      "is_anomaly": false,
+      "is_outlier": false
+    },
+    {
+      "timestamp": "2026-02-10T10:04:00Z",
+      "endpoint": "/api/items",
+      "method": "GET",
+      "status": 200,
+      "response_time_ms": 98,
+      "is_anomaly": false,
+      "is_outlier": false
+    },
+    {
+      "timestamp": "2026-02-10T10:05:00Z",
+      "endpoint": "/api/items",
+      "method": "GET",
+      "status": 0,
+      "response_time_ms": 105,
+      "is_anomaly": false,
+      "is_outlier": false
+    },
+    {
+      "timestamp": "2026-02-10T10:06:00Z",
+      "endpoint": "/api/payments",
+      "method": "POST",
+      "status": 200,
+      "response_time_ms": 102,
+      "is_anomaly": false,
+      "is_outlier": false
+    },
+    {
+      "timestamp": "2026-02-10T10:07:00Z",
+      "endpoint": "/api/payments",
+      "method": "POST",
+      "status": 200,
+      "response_time_ms": 1000,
+      "is_anomaly": false,
+      "is_outlier": true
+    },
+    {
+      "timestamp": "2026-02-10T10:08:00Z",
+      "endpoint": "/unknown",
+      "method": "UNKNOWN",
+      "status": 200,
+      "response_time_ms": 107.5,
+      "is_anomaly": false,
+      "is_outlier": false
+    },
+    {
+      "timestamp": "2026-02-10T10:09:00Z",
+      "endpoint": "/api/orders",
+      "method": "GET",
+      "status": 200,
+      "response_time_ms": 115,
+      "is_anomaly": false,
+      "is_outlier": false
+    }
+  ],
+  "anomalies": [],
+  "outliers": [
+    {
+      "timestamp": "2026-02-10T10:07:00Z",
+      "endpoint": "/api/payments",
+      "method": "POST",
+      "status": 200,
+      "response_time_ms": 1000,
+      "is_anomaly": false,
+      "is_outlier": true
+    }
+  ]
+}
