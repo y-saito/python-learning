@@ -6,7 +6,9 @@ services:
     working_dir: /workspace
     volumes:
       - ./:/workspace
-    command: python app/main.py
+    command: python -m app.main
+    ports:
+      - "8000:8000"
     depends_on:
       db:
         condition: service_healthy

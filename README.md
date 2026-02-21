@@ -11,10 +11,10 @@
 
 ## Node.js(Docker) との対応表
 
-- `express` アプリ本体 ⇔ Python アプリ本体（今は `app/main.py`）
+- `express` アプリ本体 ⇔ Python アプリ本体（FastAPI: `app/main.py`）
 - `prisma schema + prisma client` ⇔ Python ORM 層（今後追加）
 - `postgres` コンテナ ⇔ `postgres` コンテナ（同じ）
-- `docker compose run --rm api npm run dev` ⇔ `docker compose run --rm app python app/main.py`
+- `docker compose run --rm api npm run dev` ⇔ `docker compose run --rm app python -m app.main`
 - `docker compose run --rm api npx prisma migrate dev` ⇔ `docker compose run --rm app <Python migration command>`
 
 ## 起動手順
@@ -31,10 +31,16 @@ docker compose build
 docker compose up -d db
 ```
 
-3. アプリ実行
+3. アプリ実行（FastAPI サーバー）
 
 ```bash
 docker compose run --rm app
+```
+
+4. ヘルスチェック
+
+```bash
+curl http://localhost:8000/api/health
 ```
 
 ## よく使うコマンド（Node.js感覚）
@@ -42,7 +48,7 @@ docker compose run --rm app
 - アプリ実行
 
 ```bash
-docker compose run --rm app python app/main.py
+docker compose run --rm app python -m app.main
 ```
 
 - Python REPL（`node` 相当）
