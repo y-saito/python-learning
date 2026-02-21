@@ -1,0 +1,43 @@
+{
+  "daily_sales": [
+    {
+      "date": "2026-02-01",
+      "sales": 25
+    },
+    {
+      "date": "2026-02-02",
+      "sales": 14
+    },
+    {
+      "date": "2026-02-03",
+      "sales": 21
+    }
+  ],
+  "category_sales": [
+    {
+      "category": "Food",
+      "sales": 37.5
+    },
+    {
+      "category": "Stationery",
+      "sales": 22.5
+    }
+  ],
+  "top_products": [
+    {
+      "product": "Coffee",
+      "sales": 16,
+      "quantity": 4
+    },
+    {
+      "product": "Tea",
+      "sales": 11,
+      "quantity": 4
+    },
+    {
+      "product": "Notebook",
+      "sales": 10.5,
+      "quantity": 3
+    }
+  ]
+}

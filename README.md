@@ -62,3 +62,25 @@ docker compose run --rm app python
 ```bash
 docker compose exec db psql -U app -d app
 ```
+
+## Formatter / Linter / Typecheck
+
+- Node.js との比較:
+  - Node.js では `prettier`（整形）+ `eslint`（lint）+ `tsc`（型チェック）を使うことが多い。
+- PHP との比較:
+  - PHP では `php-cs-fixer`（整形）+ `phpstan` や `psalm`（型・静的解析）を使うことが多い。
+- Python でのやり方（このプロジェクト）:
+  - `ruff format`（整形）
+  - `ruff check`（lint）
+  - `mypy`（型チェック）
+
+```bash
+# Formatter
+docker compose run --rm --no-deps app ruff format app
+
+# Linter
+docker compose run --rm --no-deps app ruff check app
+
+# Typecheck
+docker compose run --rm --no-deps app mypy
+```
