@@ -16,3 +16,10 @@ warn_return_any = true
 no_implicit_optional = true
 pretty = true
 show_error_codes = true
+
+[tool.pyright]
+include = ["app"]
+exclude = ["comparisons", "data", "docs"]
+pythonVersion = "3.12"
+typeCheckingMode = "standard"
+reportMissingTypeStubs = false
