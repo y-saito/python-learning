@@ -165,3 +165,33 @@ docker run --rm -v "$PWD":/workspace -w /workspace php:8.3-cli bash -lc \
 # 期待値との比較（例: Python）
 diff -u <(jq -S . data/topic4_sales_expected.json) <(jq -S . /tmp/topic4_py.json)
 ```
+
+## お題5: 可視化によるレポート化（3言語比較）
+
+- 入力データ: `data/sales_sample.csv`
+- 期待値: `data/topic5_visual_report_expected.json`
+- 可視化出力先（例）: `data/topic5_artifacts`
+
+```bash
+# Python（matplotlibでSVG出力 + Markdownレポート）
+docker compose run --rm --no-deps app python -m app.data_processing.visual_sales_report \
+  --input data/sales_sample.csv \
+  --output-dir data/topic5_artifacts/python
+
+# Node.js（手続きSVG生成 + Markdownレポート）
+docker run --rm -v "$PWD":/workspace -w /workspace node:20 \
+  node comparisons/topic5/visual_sales_report_node.js \
+  --input data/sales_sample.csv \
+  --output-dir data/topic5_artifacts/node
+
+# PHP（配列集計 + SVG生成 + Markdownレポート）
+docker run --rm -v "$PWD":/workspace -w /workspace php:8.3-cli \
+  php comparisons/topic5/visual_sales_report_php.php \
+  --input data/sales_sample.csv \
+  --output-dir data/topic5_artifacts/php
+```
+
+```bash
+# 期待値との比較（例: Python）
+diff -u <(jq -S . data/topic5_visual_report_expected.json) <(jq -S . /tmp/topic5_py.json)
+```

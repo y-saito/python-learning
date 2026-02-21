@@ -1,0 +1,61 @@
+{
+  "summary": {
+    "total_orders": 9,
+    "total_revenue": 60,
+    "average_order_value": 6.67,
+    "best_sales_day": "2026-02-01",
+    "best_sales_amount": 25
+  },
+  "daily_sales": [
+    {
+      "date": "2026-02-01",
+      "sales": 25
+    },
+    {
+      "date": "2026-02-02",
+      "sales": 14
+    },
+    {
+      "date": "2026-02-03",
+      "sales": 21
+    }
+  ],
+  "category_sales": [
+    {
+      "category": "Food",
+      "sales": 37.5
+    },
+    {
+      "category": "Stationery",
+      "sales": 22.5
+    }
+  ],
+  "top_products": [
+    {
+      "product": "Coffee",
+      "sales": 16,
+      "quantity": 4
+    },
+    {
+      "product": "Tea",
+      "sales": 11,
+      "quantity": 4
+    },
+    {
+      "product": "Notebook",
+      "sales": 10.5,
+      "quantity": 3
+    }
+  ],
+  "insights": [
+    "売上最大日は 2026-02-01 で、日次売上は 25 です。",
+    "カテゴリ別では Food が最大で、売上は 37.5 です。",
+    "商品別では Coffee が最大で、売上は 16 です。"
+  ],
+  "artifacts": {
+    "daily_sales_chart": "daily_sales.svg",
+    "category_sales_chart": "category_sales.svg",
+    "top_products_chart": "top_products.svg",
+    "decision_report_markdown": "decision_report.md"
+  }
+}
