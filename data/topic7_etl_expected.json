@@ -1,0 +1,53 @@
+{
+  "summary": {
+    "extract": {
+      "input_records": 8
+    },
+    "transform": {
+      "transformed_records": 7,
+      "dropped_invalid_order_date_count": 1,
+      "filled_customer_id_count": 1,
+      "filled_quantity_count": 3,
+      "filled_unit_price_count": 2,
+      "quantity_fill_value": 1.5,
+      "unit_price_fill_value": 2.5
+    },
+    "load": {
+      "output_path": "data/tmp/topic7_clean_orders.parquet",
+      "loaded_records": 7
+    },
+    "total_sales": 1231.1
+  },
+  "sample_cleaned_rows": [
+    {
+      "order_id": "O2001",
+      "order_date": "2026-03-01",
+      "customer_id": "C010",
+      "product": "Notebook",
+      "quantity": 2,
+      "unit_price": 4.5,
+      "order_month": "2026-03",
+      "line_total": 9
+    },
+    {
+      "order_id": "O2002",
+      "order_date": "2026-03-01",
+      "customer_id": "UNKNOWN_CUSTOMER",
+      "product": "Pen",
+      "quantity": 2,
+      "unit_price": 1.2,
+      "order_month": "2026-03",
+      "line_total": 2.4
+    },
+    {
+      "order_id": "O2003",
+      "order_date": "2026-03-02",
+      "customer_id": "C011",
+      "product": "Server",
+      "quantity": 1,
+      "unit_price": 1200,
+      "order_month": "2026-03",
+      "line_total": 1200
+    }
+  ]
+}

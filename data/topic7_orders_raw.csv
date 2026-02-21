@@ -1,0 +1,9 @@
+order_id,order_date,customer_id,product,quantity,unit_price
+O2001,2026-03-01,C010,Notebook,2,4.5
+O2002,2026-03-01,,Pen,,1.2
+O2003,2026-03-02,C011,Server,1,1200
+O2004,invalid-date,C012,Coffee,3,3.1
+O2005,2026-03-03,C013,Tea,-2,2.5
+O2006,2026-03-03,C014,Support,1,
+O2007,2026-03-04,C015,Pen,abc,1.1
+O2008,2026-03-04,C016,Notebook,4,-5
