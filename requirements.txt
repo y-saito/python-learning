@@ -2,6 +2,8 @@ fastapi==0.116.1
 uvicorn==0.35.0
 pydantic-settings==2.10.1
 pandas==2.3.2
+sqlalchemy==2.0.43
+psycopg[binary]==3.2.10
 ruff==0.13.2
 mypy==1.17.1
 pyright==1.1.407

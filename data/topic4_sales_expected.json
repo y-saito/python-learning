@@ -1,0 +1,97 @@
+{
+  "summary": {
+    "total_rows": 12,
+    "date_range_start": "2026-02-01",
+    "date_range_end": "2026-02-06",
+    "total_revenue": 2161.25,
+    "high_value_order_count": 2
+  },
+  "daily_sales": [
+    {
+      "date": "2026-02-01",
+      "sales": 200.5
+    },
+    {
+      "date": "2026-02-02",
+      "sales": 605
+    },
+    {
+      "date": "2026-02-03",
+      "sales": 185.5
+    },
+    {
+      "date": "2026-02-04",
+      "sales": 315
+    },
+    {
+      "date": "2026-02-05",
+      "sales": 685.25
+    },
+    {
+      "date": "2026-02-06",
+      "sales": 170
+    }
+  ],
+  "segment_sales": [
+    {
+      "segment": "Enterprise",
+      "total_sales": 1510,
+      "order_count": 4,
+      "avg_order_amount": 377.5
+    },
+    {
+      "segment": "SMB",
+      "total_sales": 365.5,
+      "order_count": 4,
+      "avg_order_amount": 91.38
+    },
+    {
+      "segment": "Consumer",
+      "total_sales": 285.75,
+      "order_count": 4,
+      "avg_order_amount": 71.44
+    }
+  ],
+  "payment_method_sales": [
+    {
+      "payment_method": "Invoice",
+      "total_sales": 1170,
+      "order_count": 2,
+      "avg_order_amount": 585
+    },
+    {
+      "payment_method": "Card",
+      "total_sales": 615.25,
+      "order_count": 6,
+      "avg_order_amount": 102.54
+    },
+    {
+      "payment_method": "BankTransfer",
+      "total_sales": 300.5,
+      "order_count": 2,
+      "avg_order_amount": 150.25
+    },
+    {
+      "payment_method": "Cash",
+      "total_sales": 75.5,
+      "order_count": 2,
+      "avg_order_amount": 37.75
+    }
+  ],
+  "high_value_orders": [
+    {
+      "order_id": "O1010",
+      "order_date": "2026-02-05",
+      "segment": "Enterprise",
+      "payment_method": "Invoice",
+      "order_amount": 610
+    },
+    {
+      "order_id": "O1004",
+      "order_date": "2026-02-02",
+      "segment": "Enterprise",
+      "payment_method": "Invoice",
+      "order_amount": 560
+    }
+  ]
+}

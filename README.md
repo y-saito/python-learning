@@ -133,3 +133,35 @@ docker run --rm -v "$PWD":/workspace -w /workspace php:8.3-cli php comparisons/t
 # 期待値との比較（例: Python）
 diff -u <(jq -S . data/customer_orders_expected.json) <(jq -S . /tmp/topic3_py.json)
 ```
+
+## お題4: SQL連携と分析クエリ（PostgreSQL + 3言語比較）
+
+- シードSQL: `data/topic4_sales_seed.sql`
+- 期待値: `data/topic4_sales_expected.json`
+
+```bash
+# 0) DB起動（未起動の場合）
+docker compose up -d db
+
+# 1) シード投入
+docker compose exec -T db psql -U app -d app < data/topic4_sales_seed.sql
+
+# 2) Python（pandas.read_sql_query）
+docker compose run --rm app python -m app.data_processing.sql_sales_report
+
+# 3) Node.js（pg）
+docker run --rm -v "$PWD":/workspace -w /workspace node:20 sh -lc \
+  "cd /tmp && npm init -y >/dev/null && npm install pg@8.16.3 >/dev/null && \
+   NODE_PATH=/tmp/node_modules node /workspace/comparisons/topic4/sql_sales_report_node.js"
+
+# 4) PHP（PDO + pdo_pgsql）
+docker run --rm -v "$PWD":/workspace -w /workspace php:8.3-cli bash -lc \
+  "apt-get update >/dev/null && apt-get install -y --no-install-recommends libpq-dev >/dev/null && \
+   docker-php-ext-install pdo_pgsql >/dev/null && \
+   php /workspace/comparisons/topic4/sql_sales_report_php.php"
+```
+
+```bash
+# 期待値との比較（例: Python）
+diff -u <(jq -S . data/topic4_sales_expected.json) <(jq -S . /tmp/topic4_py.json)
+```
