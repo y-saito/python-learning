@@ -1,0 +1,6 @@
+customer_id,customer_name,segment,region
+C001,Acme Corp,Enterprise,East
+C002,Beta LLC,SMB,West
+C003,Chikara Inc,Enterprise,West
+C004,Delta Shop,Consumer,East
+C005,Echo Market,SMB,East

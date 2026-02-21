@@ -67,12 +67,14 @@ docker compose exec db psql -U app -d app
 
 - Node.js との比較:
   - Node.js では `prettier`（整形）+ `eslint`（lint）+ `tsc`（型チェック）を使うことが多い。
+  - Python では `ruff format` + `ruff check` + `pyright` が、同じ責務分担に近い。
 - PHP との比較:
   - PHP では `php-cs-fixer`（整形）+ `phpstan` や `psalm`（型・静的解析）を使うことが多い。
 - Python でのやり方（このプロジェクト）:
   - `ruff format`（整形）
   - `ruff check`（lint）
-  - `mypy`（型チェック）
+  - `pyright`（メインの型チェック）
+  - `mypy`（補助的な型チェック。段階的 strict 化と相性が良い）
 
 ```bash
 # Formatter
@@ -81,7 +83,10 @@ docker compose run --rm --no-deps app ruff format app
 # Linter
 docker compose run --rm --no-deps app ruff check app
 
-# Typecheck
+# Typecheck (Pyright: Node.js の tsc に近い位置づけ)
+docker compose run --rm --no-deps app pyright
+
+# Typecheck (mypy: PHP の phpstan/psalm 的な補助解析として併用)
 docker compose run --rm --no-deps app mypy
 ```
 
@@ -104,4 +109,27 @@ docker run --rm -v "$PWD":/workspace -w /workspace php:8.3-cli php comparisons/t
 ```bash
 # 期待値との比較（例: Python）
 diff -u <(jq -S . data/api_logs_expected.json) <(jq -S . /tmp/logs_py.json)
+```
+
+## お題3: 顧客・注文データ結合（JOIN相当, 3言語比較）
+
+- 入力データ:
+  - `data/customers_sample.csv`
+  - `data/orders_sample.csv`
+- 期待値: `data/customer_orders_expected.json`
+
+```bash
+# Python
+docker compose run --rm --no-deps app python -m app.data_processing.customer_order_join --customers data/customers_sample.csv --orders data/orders_sample.csv
+
+# Node.js
+docker run --rm -v "$PWD":/workspace -w /workspace node:20 node comparisons/topic3/customer_order_join_node.js --customers data/customers_sample.csv --orders data/orders_sample.csv
+
+# PHP
+docker run --rm -v "$PWD":/workspace -w /workspace php:8.3-cli php comparisons/topic3/customer_order_join_php.php --customers data/customers_sample.csv --orders data/orders_sample.csv
+```
+
+```bash
+# 期待値との比較（例: Python）
+diff -u <(jq -S . data/customer_orders_expected.json) <(jq -S . /tmp/topic3_py.json)
 ```

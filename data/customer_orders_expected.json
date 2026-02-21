@@ -1,0 +1,91 @@
+{
+  "summary": {
+    "customers_count": 5,
+    "orders_count": 10,
+    "inner_join_rows": 9,
+    "left_join_rows": 10,
+    "orphan_order_count": 1
+  },
+  "segment_sales_inner": [
+    {
+      "segment": "Enterprise",
+      "total_sales": 2680,
+      "order_count": 3,
+      "avg_order_amount": 893.33,
+      "unique_customers": 2
+    },
+    {
+      "segment": "SMB",
+      "total_sales": 75.5,
+      "order_count": 4,
+      "avg_order_amount": 18.88,
+      "unique_customers": 2
+    },
+    {
+      "segment": "Consumer",
+      "total_sales": 25,
+      "order_count": 2,
+      "avg_order_amount": 12.5,
+      "unique_customers": 1
+    }
+  ],
+  "segment_sales_left": [
+    {
+      "segment": "Enterprise",
+      "total_sales": 2680,
+      "order_count": 3,
+      "avg_order_amount": 893.33,
+      "unique_customers": 2
+    },
+    {
+      "segment": "SMB",
+      "total_sales": 75.5,
+      "order_count": 4,
+      "avg_order_amount": 18.88,
+      "unique_customers": 2
+    },
+    {
+      "segment": "Consumer",
+      "total_sales": 25,
+      "order_count": 2,
+      "avg_order_amount": 12.5,
+      "unique_customers": 1
+    },
+    {
+      "segment": "Unknown",
+      "total_sales": 9,
+      "order_count": 1,
+      "avg_order_amount": 9,
+      "unique_customers": 1
+    }
+  ],
+  "top_products_by_segment_inner": [
+    {
+      "segment": "Enterprise",
+      "product": "Server",
+      "total_sales": 2380,
+      "total_quantity": 2
+    },
+    {
+      "segment": "SMB",
+      "product": "Notebook",
+      "total_sales": 40.5,
+      "total_quantity": 9
+    },
+    {
+      "segment": "Consumer",
+      "product": "Coffee",
+      "total_sales": 15,
+      "total_quantity": 5
+    }
+  ],
+  "orphan_orders": [
+    {
+      "order_id": "O1008",
+      "order_date": "2026-02-04",
+      "customer_id": "C999",
+      "product": "Notebook",
+      "line_total": 9
+    }
+  ]
+}
